@@ -1,0 +1,797 @@
+/* RESET & BASE STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #eae3d9;
+    color: #4a3f35;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* TYPOGRAPHY REUSABLE */
+h1, h2, h3, .section-number {
+    font-family: 'Playfair Display', serif;
+}
+
+.section-number {
+    font-size: 3.5rem;
+    display: block;
+    line-height: 1;
+    color: #cbd1c5;
+    font-weight: bold;
+    position: absolute;
+    top: -25px;
+    left: 0;
+    z-index: -1;
+}
+
+.section-sub {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: #8c7e6e;
+    display: block;
+    font-weight: 600;
+}
+
+.line {
+    width: 40px;
+    height: 1.5px;
+    background-color: #8c7e6e;
+    margin-top: 10px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 30px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.btn-filled {
+    background-color: #3b312c; 
+    color: #eae3d9; 
+    border: 1px solid #29221f;
+    box-shadow: 0px 5px 0px #1f1a17, 
+                0px 8px 15px rgba(0, 0, 0, 0.3),
+                inset 0px 1px 0px rgba(255, 255, 255, 0.15);
+}
+
+.btn-filled:hover,
+.btn-filled:focus {
+    background-color: #eae3d9;
+    color: #3b312c; /* Tulisan bertukar cokelat gelap supaya teks jelas dibaca */
+    border: 1px solid #d1c8bd;
+    transform: translateY(2px); /* Butang turun sedikit (mula tertekan) */
+    box-shadow: 0px 3px 0px #bfa38f, 
+                0px 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn-filled:active {
+    transform: translateY(5px); /* Butang rapat ke bawah mengikut ketebalan shadow */
+    box-shadow: 0px 0px 0px #bfa38f, 
+                0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-outline {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff; 
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    box-shadow: 0px 5px 0px rgba(0, 0, 0, 0.25), 
+                0px 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.nav-links li a:hover,
+.nav-links li a:focus,
+.nav-links li a.active:hover,
+.nav-links li a.active:focus,
+.btn:hover,
+.btn:focus {
+    background-color: #eae3d9 !important; /* Paksa bertukar warna Beige */
+    color: #3b312c !important;            /* Tulisan bertukar cokelat gelap */
+    border-color: #d1c8bd;
+    transform: translateY(2px) !important; /* Butang mula turun sedikit ke bawah (Kesan 3D Tertekan) */
+    box-shadow: 0px 3px 0px #bfa38f !important; /* Shadow bawah mengecil */
+}
+
+.btn-outline:active {
+    transform: translateY(5px);
+    box-shadow: 0px 0px 0px #bfa38f, 
+                0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    padding: 8px 12px; /* Ditambah sedikit ruang dalam navbar */
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05), inset 0 1px 1px rgba(255,255,255,0.1);
+    gap: 10px; /* Memberi jarak (space) antara butang Home, About, Blog, Contact */
+}
+
+.nav-links li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 12px 24px;
+    display: inline-block;
+    border-radius: 40px;
+    position: relative;
+    transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.nav-links li a:active,
+.nav-links li a.active:active,
+.btn:active {
+    background-color: #eae3d9 !important;
+    color: #3b312c !important;
+    transform: translateY(5px) !important; /* Amblas sepenuhnya rapat mengikut ketebalan shadow */
+    box-shadow: 0px 0px 0px #bfa38f !important; /* Shadow bawah hilang sepenuhnya kerana butang sudah menyentuh lantai */
+}
+
+.nav-links li a:hover,
+.nav-links li a:focus,
+.nav-links li a.active:hover,
+.nav-links li a.active:focus,
+.btn:hover,
+.btn:focus {
+    background-color: #eae3d9 !important; /* Bertukar warna Beige semasa disentuh */
+    color: #3b312c !important;            /* Tulisan bertukar cokelat gelap */
+    border-color: #d1c8bd;
+    transform: translateY(2px) !important; /* Butang mula turun sedikit ke bawah (3D) */
+    box-shadow: 0px 3px 0px #bfa38f !important; /* Shadow bawah mengecil */
+}
+
+.nav-links li a:active,
+.nav-links li a.active:active,
+.btn:active {
+    background-color: #3b312c !important; /* Wajib bertukar warna BROWN (Cokelat Gelap) semasa diklik */
+    color: #eae3d9 !important;            /* Tulisan bertukar menjadi Beige cerah semula */
+    border-color: #29221f;
+    transform: translateY(5px) !important; /* Amblas sepenuhnya rapat ke bawah */
+    box-shadow: 0px 0px 0px #1f1a17 !important; /* Shadow bawah menjadi 0px kerana sudah ditekan rapat */
+}
+
+.nav-links li a:active,
+.nav-links li a.active:active {
+    transform: translateY(4px); /* Amblas sepenuhnya ke dalam bar menu */
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 
+                inset 0px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+
+    .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 18px; /* Jarak antara butang di telefon untuk mengelakkan shadow bertindih */
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .nav-links {
+        gap: 6px; /* Jarak dikecilkan sedikit di skrin telefon supaya muat */
+        padding: 6px 8px;
+    }
+    
+    .nav-links li a {
+        font-size: 0.8rem;
+        padding: 8px 14px;
+    }
+}
+
+/* HERO SECTION & NAVBAR */
+.hero-section {
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 20px 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #ffffff;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.logo img {
+    height: 45px;
+    object-fit: contain;
+}
+
+/* Wadah Navbar Efek Kaca */
+.nav-links {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    padding: 6px 8px;
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05), inset 0 1px 1px rgba(255,255,255,0.1);
+}
+
+.nav-links li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 12px 24px;
+    display: inline-block;
+    border-radius: 40px;
+    transition: all 0.2s ease;
+}
+
+/* Tombol Aktif Menu Atas (Model 3D Cokelat Gelap) */
+.nav-links li a.active, 
+.nav-links li a:hover {
+    background-color: #3b312c;
+    color: #eae3d9;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4), 
+                inset 0px 1px 0px rgba(255, 255, 255, 0.15);
+}
+
+.hero-content {
+    max-width: 600px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.badge {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 6px 14px;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.hero-content h1 {
+    font-size: 3.2rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+/* SECTION 2: MY STORY */
+.story-section {
+    background-color: #eae3d9; 
+    padding: 100px 0; /* Memberikan ruang atas bawah yang luas & eksklusif */
+}
+
+.exact-story-section {
+    background: radial-gradient(circle, #e2dacb 40%, #d5cdbe 100%);
+    padding-top: 140px; /* Jarak atas kekal luas */
+    padding-bottom: 0;   /* Wajib 0 supaya gambar rapat ke bawah seksyen */
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Menyusun teks di atas, gambar di bawah */
+    align-items: center;
+    overflow: hidden;
+}
+
+.exact-story-container {
+    width: 90%;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 1fr 1.75fr;
+    gap: 100px;
+    align-items: start;
+    margin-bottom: 80px; /* Jarak antara perenggan teks sebelum bermulanya gambar */
+}
+
+.exact-story-image {
+    width: 100%; /* Melebar penuh dari bucu kiri ke bucu kanan skrin */
+    line-height: 0; /* Menghapuskan ruang kosong/gap halus di bawah gambar */
+    display: block;
+}
+
+.exact-story-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Memastikan gambar tidak kemek dan mengekalkan kualiti visual */
+    display: block;
+}
+
+.exact-story-left {
+    position: relative;
+    padding-top: 55px; /* Selaraskan tulisan supaya bermula sedikit bawah dari atas nombor 01 */
+}
+
+.exact-num-bg {
+    font-family: 'Playfair Display', serif;
+    font-size: 8.5rem;
+    font-weight: 700;
+    color: #dad2c4; /* Warna pudar yang menyatu dengan latar belakang */
+    position: absolute;
+    top: -15px;
+    left: -8px;
+    z-index: 1;
+    line-height: 1;
+    letter-spacing: -0.03em;
+}
+
+.exact-sub-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #433932; /* Cokelat gelap tulen */
+    position: relative;
+    z-index: 2;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.exact-main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem; /* Saiz tulisan gergasi yang anggun */
+    font-weight: 400;
+    color: #433932; /* Cokelat gelap tulen */
+    position: relative;
+    z-index: 2;
+    line-height: 1.05;
+}
+
+.exact-title-line {
+    width: 65px;
+    height: 1px;
+    background-color: #9c8e7e;
+    margin-top: 25px;
+}
+
+.exact-story-right {
+    padding-top: 60px; /* Selaraskan paras teks bermula sama tinggi dengan baris sub-title kiri */
+}
+
+.exact-story-p {
+    font-family: 'Times New Roman', Times, serif; /* Menggunakan Times New Roman */
+    font-size: 1.2rem; /* Saiz disesuaikan sedikit kerana font Times New Roman lebih halus */
+    line-height: 1.9; /* Renggangan baris tulisan yang luas untuk dibaca */
+    color: #433932; /* Warna cokelat gelap sebiji seperti imej */
+    margin-bottom: 50px;
+    text-align: justify; /* Rata tepi kiri dan kanan */
+    letter-spacing: 0.01em;
+}
+
+.exact-story-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    line-height: 1.7;
+    color: #ab8e72; /* Warna perang keemasan lembut */
+    border-left: 1px solid #c2b9aa; /* Garis vertikal tipis pembatas */
+    padding-left: 35px; /* Jarak ke dalam dari garis pembatas */
+    margin: 0;
+}
+
+.story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.8fr; /* Nisbah kolum yang seimbang */
+    gap: 80px; /* Jarak pemisah yang luas di tengah */
+    align-items: start;
+}
+
+.story-title-block {
+    position: relative; /* Wajib ada untuk membolehkan nombor 01 duduk di belakang */
+    padding-top: 30px;  /* Ruang agar teks tidak terlalu rapat ke atas nombor */
+}
+
+.story-title-block .section-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem; /* Saiz gergasi */
+    font-weight: 700;
+    color: #ded6c9; /* Warna kelabu/beige yang sangat lembut & pudar */
+    position: absolute;
+    top: -30px;
+    left: -10px;
+    z-index: 1; /* Duduk lapisan paling bawah */
+    line-height: 1;
+}
+
+.story-title-block .section-sub {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 3px; /* Jarak antara huruf */
+    color: #4a3f35;
+    position: relative;
+    z-index: 2; /* Naikkan lapisan ke atas nombor */
+    display: block;
+    margin-bottom: 5px;
+}
+
+.story-title-block h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem; /* Saiz tulisan yang besar & anggun */
+    font-weight: 400;
+    color: #4a3f35;
+    position: relative;
+    z-index: 2; /* Naikkan lapisan ke atas nombor */
+    line-height: 1.1;
+}
+.story-content-block {
+    padding-top: 45px; /* Selaraskan ketinggian bermulanya teks dengan teks sebelah kiri */
+}
+
+.story-p {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.8; /* Jarak baris yang selesa dibaca */
+    color: #4a3f35;
+    margin-bottom: 40px;
+    text-align: justify; /* Teks tersusun rata kiri dan kanan */
+}
+
+.story-title-block .line {
+    width: 65px;
+    height: 1px;
+    background-color: #8c7e6e;
+    margin-top: 25px;
+}
+
+.story-title {
+    position: relative;
+}
+
+.story-title h2 {
+    font-size: 2.5rem;
+    color: #4a3f35;
+    margin-top: 5px;
+}
+
+.story-text p {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 25px;
+    text-align: justify;
+}
+
+.story-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: #bfa38f; /* Warna keemasan / cokelat cair yang estetik */
+    border-left: 1px solid #cbd1c5; /* Garis vertikal nipis di sebelah kiri */
+    padding-left: 30px; /* Jarak antara teks quote dengan garis halus */
+    margin: 0;
+}
+
+.story-image-wrap {
+    width: 100%;
+    height: 450px;
+    overflow: hidden;
+}
+
+.full-width-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .exact-story-section {
+        padding: 60px 0;
+    }
+    .exact-story-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .exact-story-left {
+        padding-top: 40px;
+    }
+    .exact-num-bg {
+        font-size: 6.5rem;
+    }
+    .exact-main-title {
+        font-size: 3.2rem;
+    }
+    .exact-story-right {
+        padding-top: 0;
+    }
+
+    .story-section {
+        padding: 60px 0;
+    }
+    
+    .story-grid {
+        grid-template-columns: 1fr; /* Tukar kepada 1 kolum (atas bawah) pada skrin phone */
+        gap: 40px;
+    }
+    
+    .story-title-block {
+        padding-top: 30px;
+    }
+    
+    .story-title-block .section-number {
+        font-size: 6rem;
+    }
+    
+    .story-title-block h2 {
+        font-size: 3rem;
+    }
+    
+    .story-content-block {
+        padding-top: 0; /* Rapatkan semula susunan pada fon */
+    }
+}
+
+/* SECTION 3: EXPERTISE */
+.services-section {
+    background-color: #eae3d9;
+    padding: 100px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.services-container {
+    width: 90%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Jarak antara kad-kad */
+}
+
+.service-card:hover,
+.service-card:focus-within {
+    background-color: #3b312c; /* Bertukar warna menjadi Dark Brown penuh */
+    
+    /* EFEK POPUP 3D: Kad melonjak naik ke atas & bayangan mengembang ke bawah */
+    transform: translateY(-8px); 
+    box-shadow: 0 20px 35px rgba(59, 49, 44, 0.25); 
+}
+
+.service-card:hover .service-num {
+    color: #eae3d9; /* Nombor bertukar kepada beige cerah */
+}
+
+.service-card:hover .service-info h3 {
+    color: #ffffff; /* Tajuk utama bertukar kepada putih bersih */
+}
+
+.service-card:hover .service-info p {
+    color: #ded6c9; /* Teks penerangan bertukar kelabu cair supaya selesa dibaca */
+}
+
+.expertise-section {
+    background-color: #eae3d9;
+    padding: 100px 0;
+}
+
+.expertise-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+}
+
+.expertise-left {
+    position: relative;
+    align-self: flex-start;
+}
+
+.expertise-left h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    line-height: 1.2;
+}
+
+.expertise-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.service-card {
+    background-color: #ffffff;
+    border-radius: 16px; /* Lengkungan bucu yang lembut seperti dalam gambar */
+    padding: 35px 45px;
+    display: flex;
+    align-items: center;
+    gap: 40px; /* Jarak antara nombor dengan teks */
+    cursor: pointer;
+    position: relative;
+    
+    /* Transition lancar untuk kesan popup 3D & pertukaran warna */
+    transition: background-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    
+    /* Shadow halus asal (Flat look) */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+.service-num {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.8rem;
+    color: #bfa38f; /* Warna perang keemasan lembut */
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.service-info h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #3b312c; /* Cokelat Gelap asal */
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+}
+
+.service-info p {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.05rem;
+    color: #70655a; /* Warna teks penerangan kelabu lembut */
+    line-height: 1.6;
+    transition: color 0.3s ease;
+}
+
+.card-num {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #bfa38f;
+}
+
+.card-content h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #382d24;
+}
+
+.card-content p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #706556;
+}
+
+/* RESPONSIVE DESIGN (HP ANDROID / IPHONE) */
+@media (max-width: 768px) {
+    .service-card {
+        flex-direction: column; /* Nombor beralih ke atas teks pada skrin phone */
+        align-items: flex-start;
+        gap: 15px;
+        padding: 30px;
+    }
+    
+    .service-card:hover {
+        transform: translateY(-5px); /* Kurangkan sedikit lonjakan pada fon */
+    }
+
+    .hero-section {
+        background-attachment: scroll;
+        justify-content: center;
+        gap: 60px;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links {
+        padding: 4px 6px;
+    }
+
+    .nav-links li a {
+        font-size: 0.8rem;
+        padding: 8px 16px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 18px; /* Ditambah ruang senggang ekstra untuk kedalaman efek 3D */
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .story-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .story-title h2 {
+        font-size: 2rem;
+    }
+
+    .story-image-wrap {
+        height: 280px;
+    }
+
+    .expertise-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .expertise-left h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+}
+
+.exact-footer {
+    background-color: #d6cdbe !important; /* Warna kelabu-beige hangat sebiji imej asal */
+    padding: 35px 0 !important;           /* Ketinggian ruang atas bawah yang seimbang */
+    margin: 0 !important;
+    
+    width: 100% !important;
+    max-width: 100% !important;
+    display: block !important;
+    text-align: center !important;        /* Memaksa teks duduk simetri di tengah skrin */
+    
+    clear: both !important;
+    position: relative !important;
+}
+
+.footer-container {
+    width: 100%;
+    max-width: 1200px;
+    text-align: center;        /* Memastikan teks duduk tepat di tengah-tengah */
+}
+
+.exact-footer p {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 0.9rem !important;
+    color: #665e53 !important;            /* Warna perang-kelabu pudar premium */
+    margin: 0 !important;
+    padding: 0 20px !important;           /* Ruang padding kiri kanan agar teks tidak rapat pada fon */
+    display: inline-block !important;
+    line-height: 1.6 !important;
+    letter-spacing: 0.02em !important;
+}
